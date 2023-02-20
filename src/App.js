@@ -1,25 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import AnecdoteList from './components/AnecdoteList';
+import Filter from './components/Filter';
+import AnecdoteForm from './components/AnecdoteForm';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h2>Anecdotes</h2>
+      <AnecdoteForm />
+      <AnecdoteList />
+      <Filter />
     </div>
   );
-}
+};
 
 export default App;

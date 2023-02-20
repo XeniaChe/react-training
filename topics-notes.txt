@@ -1,0 +1,81 @@
+REDUX: 
+1. Why do we need REDUX
+Standard approach: placing state and functions that handle it in the "highier level of the component tree of the application" = "lifting the state". Quite often within Root COmponent directly. The state and its handler methods have then been passed to other components with props.
+Often most of the app state and state altering functions reside directly in the root component. This works up to a certain point, but when applications grow larger, state management becomes challenging.
+
+
+2. What is redux -> Flux
+Already years ago Facebook developed the Flux- architecture to make state management of React apps easier. In Flux, the state is separated from the React components and into its own stores. State in the store is not changed directly, but with different actions.
+
+Flux offers a standard way for how and where the application's state is kept and how it is modified.
+
+ the Redux - library works with the same principle but is a bit simpler. 
+Redux is a pattern and library for managing and updating application state, using events called "actions". 
+Redux helps you manage "global" state - state that is needed across many parts of your application.
+
+3. WHEN to use Redux? 
+You have large amounts of application state that are needed in many places in the app
+The app state is updated frequently over time
+The logic to update that state may be complex
+The app has a medium or large-sized codebase, and might be worked on by many people
+
+Not all apps need Redux. Compare the tradeoffs to benefits of using it.
+
+
+3. Essentials: store/ actions/ reducer
+The Redux Store
+The center of every Redux application is the store. A "store" is a container that holds your application's global state.
+The state in a store is changed with actions. 
+
+Redux Actions
+Actions are objects (can think of it as an event) that describe what happened in the application and have at least a field determining the type of the action (name of the event). Can also have additional fileds with more information related to the occured event. e.g. payload. 
+We need to respond to user's interactions with app by creating action objects and dispatching them to the store. 
+
+Redux Reducer
+The impact of the action to the state of the application is defined using a reducer.In practice, a reducer is a function that is given the current state and an action as parameters. It returns a new state. You can think of a reducer as an event listener which handles events based on the received action (event) type.
+Rules of reducers :
+  - reducers must be pure functions (createSlice + Immer library vs switch/case with spread operator and writing immutable code manually). They are not allowed to modify the existing state. I
+ -  they do not cause any "side effects" like asynchronous logic, mutate any variables outside their scope. 
+
+Data Flow: 
+1. actions are dispatched in response to a user interaction like a click
+2. the store runs the reducer function to calculate a new state
+3. the UI reads the new state to display the new values
+
+
+React specific Redux implementation: 
+Reason why ommiting implementation for clss based components 'connect' implementation. 
+
+Installation: 
+	npm install @reduxjs/toolkit - Redux Toolkit. Modern package that includes all Redux best practices and helps to minimyse the previously very verbose configurations. NO nEED to install REDUX and THUNK
+	npm install redux - Redux core
+	npm install react-redux - React bindings	
+	npm install --save-dev @redux-devtools/core
+
+
+
+Forwarding Redux Store to various components.
+	The easiest way is using the hooks API of the react-redux and Redux Toolkit library: Provider/ configureStore from Redux Toolkit.
+	Configs automatically done by configureStore:
+		The slice reducers were automatically passed to combineReducers() // Give brief explanation
+		The redux-thunk middleware was automatically added
+		Dev-mode middleware was added to catch accidental mutations
+		The Redux DevTools Extension was automatically set up
+		The middleware and DevTools enhancers were composed together and added to the store
+		createSlice - allows to use simplified version for writing reducer func-s in a immutable fasion
+
+Dispatching actions and getting access to the store: useDispatch / useSelector HOOKs
+	The useDispatch hook provides any React component access to the dispatch function of the Redux store defined in index.js
+	Any component can access the store with the useSelector-hook of the react-redux library. useSelector Allows you to extract data from the Redux store state. It receives a function as a parameter.  The selector will be called with the entire Redux store state as its only argument. useSelector() will also subscribe to the Redux store, and run your selector whenever an action is dispatched.
+
+
+
+Action creators
+React components don't need to know the Redux action types and forms. Functions that create actions are called action creators.
+
+
+
+
+
+4. Redux Devtools 
+The Redux DevTools Extension shows a history of the changes to the state in your Redux store over time. This allows you to debug your applications effectively, including using powerful techniques like "time-travel debugging".
