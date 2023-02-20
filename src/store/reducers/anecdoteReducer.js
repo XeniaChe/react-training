@@ -11,10 +11,21 @@ export const setFilter = (filter) => ({
   payload: filter,
 });
 
-export const addNewAnecdote = (newAncdote) => ({
+export const addNewAnecdote = (newAncdContent) => ({
   type: 'ANECDOTES/ADD_NEW',
-  payload: newAncdote,
+  payload: newAncdContent,
 });
+
+// Alternative
+/* export const addNewAnecdote = (newAncdContent) => {
+  const newAncd = { id: uuidv4(), content: newAncdContent, votes: 0 };
+
+  return {
+    type: 'ANECDOTES/ADD_NEW',
+    payload: newAncd,
+  };
+};
+ */
 
 const initState = {
   anecdotes: [
@@ -77,9 +88,8 @@ const reducer = (state = initState, action) => {
 
     case 'ANECDOTES/ADD_NEW': {
       const newAncd = { id: uuidv4(), content: action.payload, votes: 0 };
-      const newList = state.anecdotes.concat(newAncd);
 
-      return { ...state, anecdotes: newList };
+      return { ...state, anecdotes: [...state.anecdotes, newAncd] };
     }
 
     default:
