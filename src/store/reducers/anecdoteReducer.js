@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
+import axios from 'axios';
 
 /////////////////////////////// Action Creators
 export const addVote = (id) => ({
@@ -16,20 +17,30 @@ export const addNewAnecdote = (newAncdContent) => ({
   payload: newAncdContent,
 });
 
-// Alternative
-/* export const addNewAnecdote = (newAncdContent) => {
-  const newAncd = { id: uuidv4(), content: newAncdContent, votes: 0 };
+const writeAncdsToState = (anecdotes) => ({
+  type: 'ANECDOTES/FETCH_INIT',
+  payload: anecdotes,
+});
 
-  return {
-    type: 'ANECDOTES/ADD_NEW',
-    payload: newAncd,
+/////////////////////////////// ASYNC action with Redux THUNK
+export const initFetch = () => {
+  return async (dispatch) => {
+    try {
+      // ASYNC call first
+      const { data: result } = await axios('http://localhost:3001/');
+
+      // Dispatch an actual SYNC action
+      dispatch(writeAncdsToState(result));
+    } catch (error) {
+      // Dispatching error notification can come here
+      console.error(error);
+    }
   };
 };
- */
 
 const initState = {
   anecdotes: [
-    { id: 1, content: 'If it hurts, do it more often', votes: 0 },
+    /*{ id: 1, content: 'If it hurts, do it more often', votes: 0 },
     {
       id: 2,
       content: 'Adding manpower to a late software project makes it later!',
@@ -57,7 +68,7 @@ const initState = {
       content:
         'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.',
       votes: 0,
-    },
+    },*/
   ],
   filter: '',
 };
@@ -90,6 +101,10 @@ const reducer = (state = initState, action) => {
       const newAncd = { id: uuidv4(), content: action.payload, votes: 0 };
 
       return { ...state, anecdotes: [...state.anecdotes, newAncd] };
+    }
+
+    case 'ANECDOTES/FETCH_INIT': {
+      return { ...state, anecdotes: [...action.payload] };
     }
 
     default:

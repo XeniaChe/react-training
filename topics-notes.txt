@@ -57,10 +57,10 @@ Installation:
 Forwarding Redux Store to various components.
 	The easiest way is using the hooks API of the react-redux and Redux Toolkit library: Provider/ configureStore from Redux Toolkit.
 	Configs automatically done by configureStore:
-		The slice reducers were automatically passed to combineReducers() // Give brief explanation
+		The slice reducers were automatically passed to combineReducers() // e.g
 		The redux-thunk middleware was automatically added
 		Dev-mode middleware was added to catch accidental mutations
-		The Redux DevTools Extension was automatically set up
+		The Redux DevTools Extension was automatically set up // e.g
 		The middleware and DevTools enhancers were composed together and added to the store
 		createSlice - allows to use simplified version for writing reducer func-s in a immutable fasion
 
@@ -79,3 +79,5 @@ React components don't need to know the Redux action types and forms. Functions 
 
 4. Redux Devtools 
 The Redux DevTools Extension shows a history of the changes to the state in your Redux store over time. This allows you to debug your applications effectively, including using powerful techniques like "time-travel debugging".
+
+How to combine reducers
