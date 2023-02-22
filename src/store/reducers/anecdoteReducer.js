@@ -1,5 +1,8 @@
 import axios from 'axios';
+const GLOBAL_URL =
+  'https://react-training-be.cfapps.us10-001.hana.ondemand.com';
 
+// http://localhost:3001/'
 /////////////////////////////// Action Creators
 const addVote = (ancdUpdated) => ({
   type: 'ANECDOTES/ADD_VOTE',
@@ -21,7 +24,7 @@ export const initFetchAsync = () => {
   return async (dispatch) => {
     try {
       // ASYNC call first
-      const { data: result } = await axios('http://localhost:3001/');
+      const { data: result } = await axios(GLOBAL_URL);
 
       // Dispatch an actual SYNC action
       dispatch(writeAncdsToState(result));
@@ -39,7 +42,7 @@ export const addNewAsync = (content) => {
 
       const { data: anecdoteCreated } = await axios({
         method: 'post',
-        url: 'http://localhost:3001/',
+        url: GLOBAL_URL,
         data: { dataToSend },
       });
 
@@ -56,7 +59,7 @@ export const addVoteAsync = (id) => {
     try {
       const { data: ancdUpdated } = await axios({
         method: 'put',
-        url: `http://localhost:3001/anecdotes/${id}`,
+        url: `${GLOBAL_URL}/anecdotes/${id}`,
       });
 
       dispatch(addVote(ancdUpdated));
