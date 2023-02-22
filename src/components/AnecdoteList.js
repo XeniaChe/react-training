@@ -1,22 +1,25 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { /* addVote, */ initFetch } from '../store/reducers/anecdoteReducer';
+import {
+  addVoteAsync,
+  initFetchAsync,
+} from '../store/reducers/anecdoteReducer';
 
 const AnecdoteList = () => {
   // Subscription to state.anecdotes
   const state = useSelector((state) => state.anecdotes);
   const dispatch = useDispatch();
 
-  /*  const voteHandler = (id) => {
-    // Dispatching 'addVote' action to change the state
-    dispatch(addVote(id));
-  };
- */
   // Initial data fetching
   useEffect(() => {
-    dispatch(initFetch());
-    console.log('Use Effecr');
+    // Dispatching ASYNC action
+    dispatch(initFetchAsync());
   }, [dispatch]);
+
+  const voteHandler = (id) => {
+    // Dispatching ASYNC action
+    dispatch(addVoteAsync(id));
+  };
 
   const style = {
     marginBottom: 10,
@@ -46,7 +49,7 @@ const AnecdoteList = () => {
             <p>
               has <strong>{anecdote.votes}</strong> votes
             </p>
-            {/* <button onClick={() => voteHandler(anecdote.id)}>vote</button> */}
+            <button onClick={() => voteHandler(anecdote.id)}>vote</button>
           </div>
         </div>
       ))}
