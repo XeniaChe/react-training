@@ -1,6 +1,5 @@
 import axios from 'axios';
-const GLOBAL_URL =
-  'https://react-training-be.cfapps.us10-001.hana.ondemand.com';
+const GLOBAL_URL = 'http://localhost:3001/';
 
 // http://localhost:3001/'
 /////////////////////////////// Action Creators
