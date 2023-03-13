@@ -1,0 +1,31 @@
+HOOKS
+
+React offers 15 different built-in hooks, of which the most popular ones are the useState and useEffect hook.
+
+Hooks let you use React features (like state) from a function — by doing a single function call. 
+Hooks are regular JavaScript functions, but unlike normal functions, when using those we have to adhere to certain rules or limitations:
+	1.y Call Hooks at the Top Level
+	Don’t call Hooks inside loops, conditions, or nested functions.Instead, always use Hooks at the top level of your React function, before any early returns.By following this rule, you ensure that Hooks are called in the same order each time a component renders. 
+	2.Only Call Hooks from React Functions
+Don’t call Hooks from regular JavaScript functions. Instead, you can:
+	Call Hooks from React function components.
+	Call Hooks from custom Hooks
+There's an existing ESlint plugin called eslint-plugin-react-hooks that enforces these two rules. 
+You can combine built-in Hooks provided by React into your own “custom Hooks”.
+
+
+Why do we need:
+
+React doesn’t offer a way to “attach” reusable behavior to a component (for example, connecting it to a store).
+However, we often can’t break complex components down any further because the logic is stateful and can’t be extracted to a function or another component. 
+Hooks let us organize the logic inside a component into reusable isolated units:
+
+
+	useState()
+	Before Hooks, functional components had no state. Now, with the useState(), we can do it.It works by returning an array. The first item of the above array is a variable that gives access to the state value. The second item is a function that updates the state of the component to reflect the new values on the DOM.
+
+	useEffect()
+	Class components manage side effects using life cycle methods, like componentDidMount(). The useEffect() function lets you perform side effects in function components. 
+By default, effects run after every completed render. But, you can choose to fire it only when certain values have changed, passing an array of variables as a second optional parameter.
+To have the same result as componentDidMount() we can send an empty array. Knowing that an empty set does never change, the effect will run only once.
+	Also used to to fetch data in React with Hooks

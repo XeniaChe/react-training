@@ -63,6 +63,9 @@ Forwarding Redux Store to various components.
 		The Redux DevTools Extension was automatically set up
 		The middleware and DevTools enhancers were composed together and added to the store
 		createSlice - allows to use simplified version for writing reducer func-s in a immutable fasion
+Reason why showning previous Redux API:
+It is useful to understand the lower-level concepts, so that you have a better understanding of what Redux Toolkit is doing for you. 
+That's why the "Redux Fundamentals" tutorial shows how Redux works, with no abstractions.
 
 Dispatching actions and getting access to the store: useDispatch / useSelector HOOKs
 	The useDispatch hook provides any React component access to the dispatch function of the Redux store defined in index.js
