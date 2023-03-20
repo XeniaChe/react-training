@@ -49,7 +49,7 @@ Reason why ommiting implementation for clss based components 'connect' implement
 Installation: 
 	npm install @reduxjs/toolkit - Redux Toolkit. Modern package that includes all Redux best practices and helps to minimyse the previously very verbose configurations. NO nEED to install REDUX and THUNK
 	npm install redux - Redux core
-	npm install react-redux - React bindings	
+	npm install react-redux - React bindings (useSelector() and useDispatch() )	
 	npm install --save-dev @redux-devtools/core
 
 
